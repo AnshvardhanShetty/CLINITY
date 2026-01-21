@@ -22,7 +22,7 @@ Every day, doctors receive patient information through a chaotic mix of:
 
 The result? **Information gets lost. Critical details slip through. Patients die.**
 
-Studies show that [80% of serious medical errors](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2572988/) involve miscommunication during handoffs. A missed allergy. An overlooked critical lab value. A pending task that never got done.
+Studies show that [80% of serious medical errors](https://pubmed.ncbi.nlm.nih.gov/25077248/) involve miscommunication during handoffs. A missed allergy. An overlooked critical lab value. A pending task that never got done.
 
 This isn't a technology problem—it's a **human lives problem** hiding in plain sight.
 
@@ -261,7 +261,7 @@ Every minute a doctor spends hunting for information is a minute not spent with 
 
 ## Contributing
 
-This project was built in under 4 weeks for the MedGemma Impact Challenge. Contributions, feedback, and clinical expertise are welcome.
+This project was built in 2 days for the MedGemma Impact Challenge. Contributions, feedback, and clinical expertise are welcome.
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/improvement`)
