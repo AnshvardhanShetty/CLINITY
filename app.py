@@ -255,7 +255,7 @@ def process_pdf(pdf_path):
 def generate_html(patients):
     timestamp = datetime.now().strftime("%d %B %Y at %H:%M")
 
-    html = f'''<div style="font-family:'Inter',system-ui,sans-serif;background:rgba(255,255,255,0.02);border:1px solid #333;border-radius:20px;padding:40px;margin:20px auto;max-width:900px;">
+    html = f'''<div id="clinity-results" data-ready="true" style="font-family:'Inter',system-ui,sans-serif;background:rgba(255,255,255,0.02);border:1px solid #333;border-radius:20px;padding:40px;margin:20px auto;max-width:900px;">
     <div style="text-align:center;border-bottom:1px solid #333;padding-bottom:30px;margin-bottom:30px;">
         <div style="font-size:11px;font-weight:600;letter-spacing:6px;color:#666;margin-bottom:10px;">CLINITY</div>
         <h1 style="font-size:28px;font-weight:600;color:#fff;margin:0;">Clinical Handover Summary</h1>
@@ -639,11 +639,15 @@ MAIN_HTML = '''
                 return;
             }
 
-            // Check for results
-            const html = document.body.innerHTML;
-            const hasResults = html.includes('Clinical Handover Summary') ||
-                             html.includes('CLINITY') && html.includes('patient');
-            const hasError = html.includes('Error processing') ||
+            // Check for results - look for our specific marker element
+            const resultsEl = document.getElementById('clinity-results');
+            const hasResults = resultsEl !== null ||
+                             document.body.innerHTML.includes('Clinical Handover Summary') ||
+                             document.body.innerHTML.includes('data-ready="true"');
+
+            // Check for errors
+            const hasError = document.body.innerHTML.includes('Error processing') ||
+                           document.body.innerHTML.includes('Error:') ||
                            document.querySelector('[class*="error"]') !== null;
 
             // Timeout after 3 minutes
@@ -651,6 +655,7 @@ MAIN_HTML = '''
             const timedOut = elapsed > 180000;
 
             if (hasResults || hasError || timedOut) {
+                console.log('CLINITY: Hiding loader -', hasResults ? 'results found' : hasError ? 'error' : 'timeout');
                 hideLoader();
             }
         }, 500);
