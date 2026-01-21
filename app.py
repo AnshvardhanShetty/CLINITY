@@ -255,7 +255,22 @@ def process_pdf(pdf_path):
 def generate_html(patients):
     timestamp = datetime.now().strftime("%d %B %Y at %H:%M")
 
-    html = f'''<div id="clinity-results" data-ready="true" style="font-family:'Inter',system-ui,sans-serif;background:rgba(255,255,255,0.02);border:1px solid #333;border-radius:20px;padding:40px;margin:20px auto;max-width:900px;">
+    # Inject script to hide loader when this HTML renders
+    hide_script = '''<script>
+    (function(){
+        if(window._clinity_hideLoader) window._clinity_hideLoader();
+        if(window._clinity_interval) { clearInterval(window._clinity_interval); window._clinity_interval=null; }
+        if(window._clinity_checker) { clearInterval(window._clinity_checker); window._clinity_checker=null; }
+        var el = document.getElementById('loadScreen');
+        var pct = document.getElementById('loadPct');
+        var ring = document.getElementById('loadRing');
+        if(pct) pct.textContent = '100%';
+        if(ring) ring.style.strokeDashoffset = '0';
+        setTimeout(function(){ if(el) el.classList.remove('active'); }, 400);
+    })();
+    </script>'''
+
+    html = hide_script + f'''<div id="clinity-results" data-ready="true" style="font-family:'Inter',system-ui,sans-serif;background:rgba(255,255,255,0.02);border:1px solid #333;border-radius:20px;padding:40px;margin:20px auto;max-width:900px;">
     <div style="text-align:center;border-bottom:1px solid #333;padding-bottom:30px;margin-bottom:30px;">
         <div style="font-size:11px;font-weight:600;letter-spacing:6px;color:#666;margin-bottom:10px;">CLINITY</div>
         <h1 style="font-size:28px;font-weight:600;color:#fff;margin:0;">Clinical Handover Summary</h1>
