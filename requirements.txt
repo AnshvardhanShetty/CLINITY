@@ -1,0 +1,27 @@
+# Core ML/AI
+torch>=2.0.0
+transformers>=4.44.0
+accelerate>=0.27.0
+bitsandbytes>=0.42.0
+
+# MedGemma / Hugging Face
+huggingface_hub>=0.23.0
+
+# OCR for handwritten notes
+pytesseract>=0.3.10
+Pillow>=10.0.0
+opencv-python>=4.8.0
+
+# Audio processing for MedASR
+soundfile>=0.12.0
+librosa>=0.10.0
+
+# API and interface
+fastapi>=0.110.0
+uvicorn>=0.27.0
+python-multipart>=0.0.9
+
+# Utilities
+pydantic>=2.0.0
+python-dotenv>=1.0.0
+jinja2>=3.1.0

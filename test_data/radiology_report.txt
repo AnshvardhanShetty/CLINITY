@@ -1,0 +1,30 @@
+RADIOLOGY REPORT
+
+Patient: Morrison, Jennifer
+DOB: 15/03/1958
+Hospital No: JM839201
+Examination: CT Head without contrast
+Date: 17/01/2026
+Clinical indication: Collapse, ?cause. GCS 14 on arrival.
+
+FINDINGS:
+
+Brain parenchyma: No acute infarct, haemorrhage or mass lesion identified. Age-appropriate cerebral atrophy. Mild periventricular white matter hypodensities consistent with small vessel ischaemic disease.
+
+Ventricles: Normal size and configuration.
+
+Extra-axial spaces: No subdural or extradural collection.
+
+Skull vault: Intact. No fracture identified.
+
+Visualised paranasal sinuses: Clear.
+
+IMPRESSION:
+
+1. No acute intracranial pathology.
+2. Mild small vessel ischaemic disease, in keeping with patient's vascular risk factors.
+3. No evidence of acute infarct to explain presentation.
+
+Consider cardiac workup and blood glucose review given clinical history of collapse.
+
+Reported by: Dr. L. Chen, Consultant Radiologist

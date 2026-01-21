@@ -1,0 +1,55 @@
+Ward Round - 18/01/2026
+Dr. Patel
+
+Mrs. Jennifer Morrison, 67F, Bed 12, Day 3 of admission
+
+Presenting complaint: Collapse at home, found by daughter
+
+Background:
+- T2DM (on metformin, gliclazide)
+- Hypertension
+- CKD stage 3b (baseline Cr ~150)
+- Previous TIA 2024
+- Osteoarthritis both knees
+
+Admission summary:
+Found on floor by daughter, unclear how long. GCS 14 on arrival (E3V5M6), now GCS 15. CT head: no acute intracranial pathology. ?Hypoglycaemic episode vs mechanical fall vs cardiac cause.
+
+Current issues:
+1. Collapse ?cause - hypoglycaemia most likely given BM 2.1 on arrival. Gliclazide held. HbA1c pending.
+2. AKI on CKD - Cr 210 today (baseline 150), improved from 245 on admission. Likely pre-renal, responding to fluids.
+3. UTI - MSU grew E. coli >10^5, sensitive to trimethoprim. Started trimethoprim 200mg BD day 2.
+4. New AF noted on telemetry - rate controlled (HR 70-80s), not anticoagulated yet given recent fall. Needs CHADSVASC assessment.
+5. Mobility - pre-morbid independent with stick. Now requiring frame. PT/OT assessing.
+
+Examination:
+Alert, orientated. HR 76 irregular, BP 138/82. Chest clear. Abdo soft. Peripheral oedema 1+ bilaterally. Neuro: no focal deficit.
+
+Investigations:
+- Bloods today: Hb 108, WBC 11.2, Plt 234, Na 139, K 4.8, Cr 210, CRP 45 (down from 89)
+- ECG: AF, rate 74, no ischaemic changes
+- Echo requested - not done yet
+- HbA1c pending
+
+Plan:
+1. Continue IV fluids, target UO >0.5ml/kg/hr
+2. Recheck U&E tomorrow
+3. Complete 5 day course trimethoprim (day 3/5)
+4. Keep gliclazide held, monitor BMs QDS, sliding scale if needed
+5. Chase echo - need to assess LV function before considering anticoagulation
+6. CHADSVASC = 5 (age, female, HTN, DM, vascular disease) - will need anticoagulation if no contraindication
+7. PT/OT to continue rehab assessment
+8. Daughter to attend family meeting tomorrow 2pm - discuss discharge planning
+
+Risks:
+- Fall risk - bed rails, 1:1 supervision when mobilising
+- Bleeding risk if anticoagulated given recent fall
+- Hypoglycaemia risk - close BM monitoring
+
+Outstanding:
+- Echo
+- HbA1c result
+- Family meeting tomorrow
+- OT home assessment may be needed
+
+Dr. A. Patel, CT2
