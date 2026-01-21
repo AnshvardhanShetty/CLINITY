@@ -599,6 +599,7 @@ MAIN_HTML = '''
 <script>
 (function() {
     const circumference = 2 * Math.PI * 70;
+    let loaderStartTime = null;
 
     function hideLoader() {
         const loadEl = document.getElementById('loadScreen');
@@ -609,6 +610,10 @@ MAIN_HTML = '''
             clearInterval(window._clinity_interval);
             window._clinity_interval = null;
         }
+        if (window._clinity_checker) {
+            clearInterval(window._clinity_checker);
+            window._clinity_checker = null;
+        }
 
         if (pctEl) pctEl.textContent = '100%';
         if (ringEl) ringEl.style.strokeDashoffset = '0';
@@ -617,29 +622,43 @@ MAIN_HTML = '''
             if (loadEl) loadEl.classList.remove('active');
             if (pctEl) pctEl.textContent = '0%';
             if (ringEl) ringEl.style.strokeDashoffset = String(circumference);
+            loaderStartTime = null;
         }, 500);
     }
 
-    // Backup: Watch for results appearing in the DOM
-    const observer = new MutationObserver(() => {
-        const loadEl = document.getElementById('loadScreen');
-        if (loadEl && loadEl.classList.contains('active')) {
-            // Check if results appeared or error occurred
-            const hasResults = document.body.innerHTML.includes('Clinical Handover Summary');
-            const hasError = document.body.innerHTML.includes('Error') ||
-                           document.querySelector('.error') !== null;
-            if (hasResults || hasError) {
+    // Continuous checker that runs every 500ms while loader is active
+    function startChecker() {
+        loaderStartTime = Date.now();
+
+        if (window._clinity_checker) clearInterval(window._clinity_checker);
+
+        window._clinity_checker = setInterval(() => {
+            const loadEl = document.getElementById('loadScreen');
+            if (!loadEl || !loadEl.classList.contains('active')) {
+                clearInterval(window._clinity_checker);
+                return;
+            }
+
+            // Check for results
+            const html = document.body.innerHTML;
+            const hasResults = html.includes('Clinical Handover Summary') ||
+                             html.includes('CLINITY') && html.includes('patient');
+            const hasError = html.includes('Error processing') ||
+                           document.querySelector('[class*="error"]') !== null;
+
+            // Timeout after 3 minutes
+            const elapsed = Date.now() - loaderStartTime;
+            const timedOut = elapsed > 180000;
+
+            if (hasResults || hasError || timedOut) {
                 hideLoader();
             }
-        }
-    });
+        }, 500);
+    }
 
-    setTimeout(() => {
-        observer.observe(document.body, { childList: true, subtree: true, characterData: true });
-    }, 1000);
-
-    // Expose hideLoader globally as backup
+    // Expose functions globally
     window._clinity_hideLoader = hideLoader;
+    window._clinity_startChecker = startChecker;
 })();
 </script>
 '''
@@ -828,10 +847,9 @@ def create_app():
             const ringEl = document.getElementById('loadRing');
 
             if (loadEl) {
-                // Clear any existing interval
-                if (window._clinity_interval) {
-                    clearInterval(window._clinity_interval);
-                }
+                // Clear any existing intervals
+                if (window._clinity_interval) clearInterval(window._clinity_interval);
+                if (window._clinity_checker) clearInterval(window._clinity_checker);
 
                 loadEl.classList.add('active');
                 let pct = 0;
@@ -841,6 +859,7 @@ def create_app():
                 if (pctEl) pctEl.textContent = '0%';
                 if (ringEl) ringEl.style.strokeDashoffset = String(circumference);
 
+                // Start progress animation
                 window._clinity_interval = setInterval(() => {
                     if (pct < 95) {
                         pct += Math.random() * 1.5 + 0.3;
@@ -849,6 +868,9 @@ def create_app():
                         if (ringEl) ringEl.style.strokeDashoffset = circumference - (pct / 100) * circumference;
                     }
                 }, 250);
+
+                // Start the completion checker
+                if (window._clinity_startChecker) window._clinity_startChecker();
             }
             return [];
         }
